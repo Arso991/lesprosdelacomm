@@ -144,13 +144,15 @@ body{
     display: none;
 }
 
-.social-links{
+.social-links, 
+.become-partner {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.social-links.active {
+.social-links.active,
+.become-partner.active{
     opacity: 1;
     visibility: visible;
 }
@@ -163,4 +165,54 @@ body{
     .toggle-sidebar{
         display: block;
     }
+}
+
+.job-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-container h1,
+.post-container h2,
+.post-container p,
+.post-container ul li,
+.job-container h1,
+.job-container h2,
+.job-container p,
+.job-container ul li{
+    font-size: 1rem;
+}
+
+.post-container h1,
+.post-container h2,
+.job-container h1,
+.job-container h2{
+    font-weight: 600;
+}
+
+.post-container ul,
+.job-container ul{
+    list-style: disc;
+    padding-left: 15px;
+}
+
+.slick-prev-custom,
+.slick-next-custom {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    width: 35px;
+    height: 35px;
+}
+
+.slick-prev-custom:hover,
+.slick-next-custom:hover {
+    background: #098752;
 }

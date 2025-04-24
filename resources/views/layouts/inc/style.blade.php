@@ -24,7 +24,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 {{-- TAILWIND --}}
-{{-- <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet"> --}}
 <script src="https://cdn.tailwindcss.com"></script>
 
 {{-- CUSTOM CSS --}}

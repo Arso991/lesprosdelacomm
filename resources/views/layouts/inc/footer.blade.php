@@ -14,23 +14,23 @@
                             </div>
                             <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
                                 <ul class="list-unstyled mb-5 mb-lg-0">
-                                    <li><a href="{{ route('view.about') }}">A propos de nous</a></li>
-                                    <li><a href="{{ route('view.jobs') }}">Nos formations</a></li>
-                                    <li><a href="{{ route('view.home') }}#gallery">Galerie photos</a></li>
+                                    <li><a href="{{ route('view.about') }}">@lang('static.a propos de nous')</a></li>
+                                    <li><a href="{{ route('view.about') }}#events">@lang('static.nos formations')</a></li>
+                                    <li><a href="{{ route('view.home') }}#gallery">@lang('static.galerie')</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
                                 <ul class="list-unstyled mb-5 mb-lg-0">
-                                    <li><a href="{{ route('view.posts') }}">Actualités</a></li>
-                                    <li><a href="{{ route('view.contacts') }}">Nous contacter</a></li>
-                                    <li><a href="{{ route('view.about') }}#membership">Rejoignez-nous</a></li>
+                                    <li><a href="{{ route('view.posts') }}">@lang('static.actualites')</a></li>
+                                    <li><a href="{{ route('view.contacts') }}">@lang('static.nous contacter')</a></li>
+                                    <li><a href="{{ route('view.about') }}#membership">@lang('static.rejoignez')</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-4 col-sm-12 col-md-4 reveal revealleft">
                                 <ul class="list-unstyled mb-5 mb-lg-0">
-                                    <li><a href="#">Nos status</a></li>
-                                    <li><a href="#">Politique de confidentialité</a></li>
-                                    <li><a href="#">Devenez partenaire</a></li>
+                                    <li><a href="#">@lang('static.nos status')</a></li>
+                                    <li><a href="#">@lang('static.politique')</a></li>
+                                    <li><a href="#">@lang('static.devenir partenaire')</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="address mt-[.5rem] md:mt-0">
                                 <h2>
-                                    <span class="font-bold">Adresse du siège :</span> Quartier Fiyegnon (Fidjrossè),
+                                    <span class="font-bold">@lang('static.adresse') :</span> Quartier Fiyegnon (Fidjrossè),
                                     Cotonou, Bénin
                                 </h2>
                                 <h2>

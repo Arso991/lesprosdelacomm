@@ -18,9 +18,10 @@
     </section>
     {{-- END HERO --}}
     <section class="container mx-auto mt-[5rem] px-5 sm:px-0">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem]">Les Pros de la comm du
+        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem] text-center">Les Pros de
+            la comm du
             Bénin</h1>
-        <div class="about-container gap-[2rem]">
+        <div class="about-container gap-[2rem] items-center">
             <div class="w-full md:w-1/2 text-[0.875rem] md:text-[1rem] lg:text-[1rem] leading-6">
                 <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">Les Pros de la Comm du Bénin rassemble les
                     professionnels de la communication du Bénin. Pour être reconnu comme professionnel de la communication,
@@ -31,18 +32,18 @@
                     communication tant à l’intérieur qu’à l’extérieur.</p>
             </div>
             <div class="mt-[1rem] md:mt-[0px] w-full md:w-1/2 flex justify-center">
-                <div class="w-[300px] h-[300px] reveal revealright">
-                    <div class="w-full h-1/2 overflow-hidden">
+                <div class="w-[500px] h-[300px] reveal revealright">
+                    <div class="w-full h-1/2 overflow-hidden rounded-md">
                         <img src="{{ asset('assets/images/brand/banner1.jpg') }}" class="w-full h-full object-cover"
                             alt="">
                     </div>
-                    <div class="w-full h-1/2 flex gap-4 mt-4">
-                        <div>
+                    <div class="w-full h-1/2 flex justify-center gap-4 mt-4">
+                        <div class="overflow-hidden rounded-md">
                             <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
                                 alt="">
                         </div>
-                        <div>
-                            <img src="{{ asset('assets/images/brand/banner3.webp') }}" class="w-full h-full object-cover"
+                        <div class="overflow-hidden rounded-md">
+                            <img src="{{ asset('assets/images/brand/1.jpg') }}" class="w-full h-full object-cover"
                                 alt="">
                         </div>
                     </div>
@@ -52,7 +53,8 @@
     </section>
 
     <section class="container mx-auto mt-[5rem] px-5 sm:px-0">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem]">Nos missions</h1>
+        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem] text-center">Nos
+            missions</h1>
         <ul class="px-[0px] md:px-[1rem] text-[0.875rem] md:text-[1rem] lg:text-[1rem] flex flex-col gap-3">
             <li class="reveal revealbottom">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 Ipsum has been the
@@ -85,69 +87,48 @@
         </ul>
     </section>
 
-    <section class="container mx-auto mt-[5rem] px-5 sm:px-0">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem]">Nos évènements</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="about-container border rounded-md">
-                <div class="w-full md:w-[12rem] h-[10rem] md:h-full overflow-hidden">
-                    <img src="{{ asset('assets/images/brand/banner1.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="flex-1 p-[1rem]">
-                    <h1 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mb-[1rem]">Les Rencontres PROSCOMM</h1>
-                    <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">Un événement annuel réunissant les
-                        professionnels de la communication, du marketing, des médias et
-                        des relations publiques. Au programme : panels d’experts, speed networking, stands de partenaires et
-                        pitchs de projets innovants.</p>
-                </div>
+    <section class="container mx-auto mt-[5rem] px-5 sm:px-0" id="events">
+        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[2rem] text-center">Nos
+            évènements</h1>
+        @if ($events && $events->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @foreach ($events as $item)
+                    <div class="flex flex-col rounded-md transition-all ease-in-out duration-300 hover:shadow-lg">
+                        <a href="{{ route('view.post', $item->id) }}"
+                            class="w-full h-[15rem] overflow-hidden rounded-t-md block">
+                            <img src="{{ asset($item->cover_image) }}" class="w-full h-full object-cover" alt="">
+                        </a>
+                        <div class="flex-1 flex flex-col justify-between gap-2 p-[1rem]">
+                            <div>
+                                <a href="{{ route('view.post', $item->id) }}"
+                                    class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] my-[.5rem] hover:text-[#098752]">
+                                    {{ $item->title }}</a>
+                            </div>
+                            <p
+                                class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] text-[#098752] flex items-center gap-2 capitalize">
+                                {{ $item->formatted_day }} <span class="fa fa-circle text-[.5rem]"></span>
+                                {{ $item->formatted_hour }}</p>
+                            <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] text-gray-500">{{ $item->address }}</p>
+                            <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] text-gray-500">
+                                {{ $item->price ? 'A partir de : ' . $item->price . ' F cfa' : 'Gratuit' }}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
 
-            <div class="about-container border rounded-md">
-                <div class="w-full md:w-[12rem] h-[10rem] md:h-full overflow-hidden">
-                    <img src="{{ asset('assets/images/brand/banner1.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="flex-1 p-[1rem]">
-                    <h1 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mb-[1rem]">Masterclass : L’Art du Personal
-                        Branding</h1>
-                    <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">Un atelier intensif animé par des experts en
-                        image, storytelling et influence digitale pour apprendre à maîtriser sa communication personnelle et
-                        se positionner comme une référence dans son domaine.</p>
-                </div>
+            <div class="mt-[2rem]">
+                {{ $events->links('pagination::tailwind') }}
             </div>
-
-            <div class="about-container border rounded-md">
-                <div class="w-full md:w-[12rem] h-[10rem] md:h-full overflow-hidden">
-                    <img src="{{ asset('assets/images/brand/banner1.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="flex-1 p-[1rem]">
-                    <h1 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mb-[1rem]">Bootcamp Communication Digitale
-                    </h1>
-                    <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">Une formation immersive mêlant théorie et cas
-                        pratiques pour se former aux stratégies social media, content marketing, publicité en ligne et
-                        outils de performance digitale.</p>
-                </div>
+        @else
+            <div class="w-full flex flex-col items-center">
+                @include('layouts.inc.no-data')
+                <h2 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mt-[1rem]">Pas de données pour le moment</h2>
             </div>
-
-            <div class="about-container border rounded-md">
-                <div class="w-full md:w-[12rem] h-[10rem] md:h-full overflow-hidden">
-                    <img src="{{ asset('assets/images/brand/banner1.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="flex-1 p-[1rem]">
-                    <h1 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mb-[1rem]">Les Trophées de la Comm’ Bénin
-                    </h1>
-                    <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">Une soirée de gala pour récompenser les
-                        meilleures campagnes, talents émergents, agences créatives et initiatives inspirantes du secteur. Un
-                        moment fort de reconnaissance et de valorisation des acteurs locaux.</p>
-                </div>
-            </div>
-        </div>
+        @endif
     </section>
 
     <section id="membership" class="container mx-auto mt-[5rem] px-5 sm:px-0">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[1rem]">Rejoindre
+        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] font-bold mb-[1rem] text-center">Rejoindre
             l'Association</h1>
         <form action="{{ route('view.membership.store') }}" method="POST" class="flex justify-center">
             @csrf
@@ -201,42 +182,7 @@
 
     {{-- START PARTNERS --}}
     <section class="container mx-auto my-[5rem]">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] text-center font-bold mb-[2rem]">
-            Partenaires</h1>
-
-        <div class="partner-slider">
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-        </div>
-
+        @include('apps.pages.widgets.partner')
     </section>
     {{-- END PARTNERS --}}
 @endsection
