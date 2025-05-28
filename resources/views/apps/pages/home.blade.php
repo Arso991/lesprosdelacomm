@@ -43,31 +43,30 @@
                 <span class="fa fa-close text-[1.5rem] font-bold cursor-pointer become-partner-close"></span>
             </div>
             <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] text-center font-bold mb-[1rem]">
-                Devenir partenaire</h1>
+                @lang('static.devenir partenaire')</h1>
             <form class="px-[2rem]" action="">
-                <h2 class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mb-[2rem] text-center">Pour devenir partenaire,
-                    veuillez renseigner vos informations puis envoyer !</h2>
+                <h2 class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mb-[2rem] text-center">@lang('static.pour devenir')</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div class="">
-                        <label for="lastname" class="block text-[1rem] mb-1">Nom</label>
+                        <label for="lastname" class="block text-[1rem] mb-1">@lang('static.nom')</label>
                         <input type="text" id="lastname" name="lastname"
                             class="block w-full h-[40px] rounded-md border-0 pl-3 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 focus:outline-none focus:shadow-sm">
                     </div>
 
                     <div class="">
-                        <label for="firstname" class="block text-[1rem] mb-1">Prénom</label>
+                        <label for="firstname" class="block text-[1rem] mb-1">@lang('static.prenom')</label>
                         <input type="text" id="firstname" name="firstname"
                             class="block w-full h-[40px] rounded-md border-0 pl-3 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 focus:outline-none focus:shadow-sm">
                     </div>
 
                     <div class="">
-                        <label for="enterprise" class="block text-[1rem] mb-1">Nom d'entreprise</label>
+                        <label for="enterprise" class="block text-[1rem] mb-1">@lang('static.nom d\'entreprise')</label>
                         <input type="text" id="enterprise" name="enterprise"
                             class="block w-full h-[40px] rounded-md border-0 pl-3 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 focus:outline-none focus:shadow-sm">
                     </div>
 
                     <div class="">
-                        <label for="phone" class="block text-[1rem] mb-1">Email</label>
+                        <label for="phone" class="block text-[1rem] mb-1">@lang('static.email')</label>
                         <input type="text" id="phone" name="phone"
                             class="block w-full h-[40px] rounded-md border-0 pl-3 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 focus:outline-none focus:shadow-sm">
                     </div>

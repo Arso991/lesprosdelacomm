@@ -38,7 +38,7 @@
                                     <i class="fe fe-eye text-gray-400"></i>
                                 </div>
                                 <div>
-                                    <p class="text-gray-400">{{ $item->views }} vues</p>
+                                    <p class="text-gray-400">{{ $item->views }} @lang('static.vues')</p>
                                 </div>
                             </div>
                             <div class="flex gap-2 items-center">
@@ -61,7 +61,7 @@
     @else
         <div class="w-full flex flex-col items-center">
             @include('layouts.inc.no-data')
-            <h2 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mt-[1rem]">Pas de données pour le moment</h2>
+            <h2 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mt-[1rem]">@lang('static.pas de données')</h2>
         </div>
     @endif
 </section>
