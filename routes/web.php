@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\ViewController;
 use App\Http\Controllers\LocaleController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
@@ -20,3 +21,11 @@ Route::group([], function () {
 });
 
 Route::post('/locale', [LocaleController::class, 'setLocale'])->name('set.locale');
+
+Route::get('/run-setup', function () {
+    Artisan::call('migrate:fresh', ['--force' => true]);
+    Artisan::call('db:seed', ['--force' => true]);
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
+    return 'Setup executed.';
+});
