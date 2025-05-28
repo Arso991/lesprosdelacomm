@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Mail\MembershipMail;
+use App\Models\About;
+use App\Models\Banner;
+use App\Models\Career;
+use App\Models\Office;
+use App\Models\Post;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -14,37 +20,61 @@ class ViewController extends Controller
 {
     public function index()
     {
-        return view('apps.pages.home');
+        $banner = Banner::first();
+        $about = About::first();
+        $offices = Office::orderBy('created_at', 'asc')->limit(4)->get();
+        $posts = Post::where('type', '!=', 'rapport')->limit(3)->get();
+        $testimonials = Testimonial::all();
+
+        return view('apps.pages.home', compact('banner', 'about', 'offices', 'posts', 'testimonials'));
     }
 
     public function office()
     {
-        return view('apps.pages.office');
+        $offices = Office::orderBy('created_at', 'asc')->get();
+        $reports = Post::where('type', 'rapport')->paginate(6);
+
+        return view('apps.pages.office', compact('offices', 'reports'));
     }
 
     public function about()
     {
-        return view('apps.pages.about');
+        $events = Post::where('type', 'event')->paginate(6);
+
+        return view('apps.pages.about', compact('events'));
     }
 
     public function jobs()
     {
-        return view('apps.pages.jobs');
+        $careers = Career::paginate(9);
+
+        return view('apps.pages.jobs', compact('careers'));
+    }
+
+    public function job($id)
+    {
+        $career = Career::find($id);
+
+        return view('apps.pages.job', compact('career'));
     }
 
     public function posts()
     {
-        return view('apps.pages.posts');
+        $posts = Post::where('type', '!=', 'event')->paginate(9);
+
+        return view('apps.pages.posts', compact('posts'));
+    }
+
+    public function post($id)
+    {
+        $post = Post::find($id);
+
+        return view('apps.pages.post', compact('post'));
     }
 
     public function contacts()
     {
         return view('apps.pages.contacts');
-    }
-
-    public function post()
-    {
-        return view('apps.pages.post');
     }
 
     public function membershipStore(Request $request)
@@ -135,5 +165,24 @@ class ViewController extends Controller
             Log::error('Erreur lors de l\'envoie du message : ' . $e->getMessage());
             return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoie du message. Veuillez reéssayer.');
         }
+    }
+
+    public function searchStore(Request $request)
+    {
+        $posts = Post::all();
+
+        if ($request->has('query') && $request->input('query') != '') {
+            $query = $request->input('query');
+
+            $posts = Post::where(function ($q) use ($query) {
+                $q->where('title', 'LIKE', "%{$query}%");
+            })
+                ->where('type', '!=', 'event')
+                ->paginate(9);
+        } else {
+            $posts = Post::where('type', '!=', 'event')->paginate(9);
+        }
+
+        return view('apps.pages.posts', compact('posts'));
     }
 }

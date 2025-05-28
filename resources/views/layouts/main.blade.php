@@ -2,12 +2,19 @@
 <html lang="en" dir="ltr">
 
 <head>
+    <!-- META DATA FACEBOOK -->
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Accueil | Les pros de la Comm du Bénin" />
+    <meta property="og:description" content="Bonjour ! Je vous invite à visiter le site" />
+    <meta property="og:image" content="{{ asset('assets/images/brand/logo1.png') }}" />
 
     <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Le site officiel de la présentation de l'association Les pros de la comm du Bénin">
+    <meta name="description"
+        content="Le site officiel de la présentation de l'association Les pros de la comm du Bénin">
     <meta name="author" content="KKSMARTCOM">
     <meta name="keywords"
         content="association,les pros,association les pros,les pros comm,les pros de la comm du bénin,bénin,comm.">
@@ -20,9 +27,9 @@
 <body class="bg-white h-full overflow-x-hidden">
 
     <!-- GLOBAL-LOADER -->
-    <div id="global-loader">
+    {{-- <div id="global-loader">
         <img src="{{ asset('assets/images/loader.svg') }}" class="loader-img" alt="Loader">
-    </div>
+    </div> --}}
     <!-- /GLOBAL-LOADER -->
 
     <!-- PAGE -->
@@ -34,7 +41,6 @@
             <!--app-content open-->
             <div class="">
                 <div class="">
-
                     @yield('content')
                 </div>
             </div>
@@ -48,7 +54,7 @@
                     </div>
                     <div
                         class="flex flex-col gap-4 items-center py-[1rem] bg-[#ffff] transition-all duration-300 social-links">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url('/')) }}"
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
                             target="_blank">
                             <span class="fa fa-facebook text-[1rem] text-[#3b5998]"></span>
                         </a>

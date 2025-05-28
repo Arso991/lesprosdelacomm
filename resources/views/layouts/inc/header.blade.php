@@ -7,15 +7,23 @@
                     @csrf
                     <select onchange="this.form.submit()"
                         class="border-gray-200 bg-[#ffff] border-1 py-1 px-1 outline-none" name="locale" id="">
-                        <option value="fr" {{ app()->getLocale() === 'fr' ? 'selected' : '' }}>🇫🇷 FRA<span
-                                class="fe fe-french"></span> </option>
+                        <option value="fr" {{ app()->getLocale() === 'fr' ? 'selected' : '' }}>🇫🇷 FRA</option>
                         <option value="en" {{ app()->getLocale() === 'en' ? 'selected' : '' }}>🇬🇧 ENG</option>
                     </select>
                 </form>
             </div>
-            <div class="w-[8rem] md:w-full">
-                <input class="rounded-[15px] border-gray-200 border-1 py-1 px-4 outline-none w-full" type="text"
-                    placeholder="@lang('static.rechercher')...">
+            <div class="w-[8rem] relative md:w-full">
+                <form method="POST" action="{{ route('view.search.store') }}">
+                    @csrf
+                    @method('GET')
+                    <input value="{{ old('query') }}" name="query"
+                        class="rounded-[15px] border-gray-200 border-1 py-1 px-4 outline-none w-full" type="text"
+                        placeholder="@lang('static.rechercher')...">
+                    <button onclick="this.form.submit()"
+                        class="absolute z-30 inset-y-0 right-0 flex items-center pr-2 cursor-pointer">
+                        <span class="fa fa-search text-2xl text-black"></span>
+                    </button>
+                </form>
             </div>
             <div class="flex items-center gap-4">
                 <a target="_blank" href="https://web.facebook.com/lesprosdelacommdubenin" class="hover:text-[#098752]">
@@ -50,11 +58,11 @@
                         href="{{ route('view.about') }}">@lang('static.association')</a>
                 </li>
                 <li>
-                    <a class="text-[1rem] text-[#FFFFFF] hover:text-[#098752] {{ Request::is('jobs*') ? 'active-menu' : '' }}"
+                    <a class="text-[1rem] text-[#FFFFFF] hover:text-[#098752] {{ Request::is('jobs*') || Request::is('job*') ? 'active-menu' : '' }}"
                         href="{{ route('view.jobs') }}">@lang('static.carriere')</a>
                 </li>
                 <li>
-                    <a class="text-[1rem] text-[#FFFFFF] hover:text-[#098752] {{ Request::is('posts*') ? 'active-menu' : '' }}"
+                    <a class="text-[1rem] text-[#FFFFFF] hover:text-[#098752] {{ Request::is('posts*') || Request::is('post*') || Request::is('search*') ? 'active-menu' : '' }}"
                         href="{{ route('view.posts') }}">@lang('static.actualites')</a>
                 </li>
                 <li>
@@ -105,11 +113,11 @@
                             href="{{ route('view.about') }}">@lang('static.association')</a>
                     </li>
                     <li>
-                        <a class="text-[1rem] text-[#000000] hover:text-[#098752] {{ Request::is('jobs*') ? 'active-menu' : '' }}"
+                        <a class="text-[1rem] text-[#000000] hover:text-[#098752] {{ Request::is('jobs') || Request::is('job') ? 'active-menu' : '' }}"
                             href="{{ route('view.jobs') }}">@lang('static.carriere')</a>
                     </li>
                     <li>
-                        <a class="text-[1rem] text-[#000000] hover:text-[#098752] {{ Request::is('posts*') ? 'active-menu' : '' }}"
+                        <a class="text-[1rem] text-[#000000] hover:text-[#098752] {{ Request::is('posts') || Request::is('post') ? 'active-menu' : '' }}"
                             href="{{ route('view.posts') }}">@lang('static.actualites')</a>
                     </li>
                     <li>

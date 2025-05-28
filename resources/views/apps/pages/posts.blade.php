@@ -4,362 +4,63 @@
 
 @section('content')
     {{-- START HERO --}}
-    <section class="relative">
-        <div style="background:url('{{ asset('assets/images/brand/banner3.webp') }}') center; background-repeat: no-repeat; background-size: cover;"
-            class="h-[300px] w-full">
-            <div class="h-full w-full bg-black opacity-60"></div>
-        </div>
-
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-[80%] md:w-[60%]">
-            <div class="flex flex-col gap-4">
-                <h1 class="text-[#FFFFFF] text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-center">Actualités</h1>
-            </div>
-        </div>
-    </section>
+    @include('apps.pages.widgets.destinationHero', ['section' => __('static.actualites')])
     {{-- END HERO --}}
     <section class="container mx-auto mt-[5rem] px-[1.5rem] sm:px-[5rem]">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
+        @if ($posts && $posts->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach ($posts as $item)
+                    <div class="border flex flex-col gap-4">
+                        <div class="h-[10rem]">
+                            <a href="{{ route('view.post', $item->id) }}">
+                                <img src="{{ asset($item->cover_image) }}" class="w-full h-full object-cover"
+                                    alt="{{ $item->title }}">
+                            </a>
+                        </div>
+                        <div class="px-[10px] flex-1 flex flex-col justify-between gap-3">
+                            <div class="">
+                                <a href="{{ route('view.post', $item->id) }}"
+                                    class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">{{ $item->title }}</a>
                             </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
+                            <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem]">
+                                {{ Str::limit($item->content, 68, '...') }}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-2 items-center">
+                                    <div>
+                                        <i class="fe fe-eye text-gray-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400">{{ $item->views }} vues</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <div>
+                                        <i class="fe fe-clock text-gray-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400">{{ $item->estimated_reading_time }} min</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
 
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-[2rem]">
+                {{ $posts->links('pagination::tailwind') }}
             </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @else
+            <div class="w-full flex flex-col items-center">
+                @include('layouts.inc.no-data')
+                <h2 class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] mt-[1rem]">Pas de données pour le moment</h2>
             </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy
-                            text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy
-                            text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border flex flex-col gap-4">
-                <div class="h-[10rem]">
-                    <img src="{{ asset('assets/images/brand/banner2.jpg') }}" class="w-full h-full object-cover"
-                        alt="">
-                </div>
-                <div class="px-[10px]">
-                    <div class="mb-[1rem]">
-                        <a href="#"
-                            class="text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] hover:text-[#098752]">Première
-                            édition du forum des
-                            métiers de la com</a>
-                        <p class="text-[0.875rem] md:text-[1rem] lg:text-[1rem] mt-[.5rem]">Lorem Ipsum is simply dummy
-                            text
-                            of
-                            the
-                            printing and typesetting industry. Lorem...</p>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-eye text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">29 vues</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <div>
-                                <i class="fe fe-clock text-gray-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400">2 min</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        @endif
     </section>
 
     {{-- START PARTNERS --}}
     <section class="container mx-auto my-[5rem]">
-        <h1 class="text-[1.25rem] md:text-[1.5rem] lg:text-[2rem] text-[#098752] text-center font-bold mb-[2rem]">
-            Partenaires</h1>
-
-        <div class="partner-slider">
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner1.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-            <div class="h-[6rem] mx-2">
-                <img src="{{ asset('assets/images/logos/partner2.jpg') }}" class="h-full w-full object-cover"
-                    alt="">
-            </div>
-
-        </div>
-
+        @include('apps.pages.widgets.partner')
     </section>
     {{-- END PARTNERS --}}
 @endsection

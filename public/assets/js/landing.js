@@ -2,9 +2,9 @@
   "use strict";
 
   // PAGE LOADING
-  $(window).on("load", function (e) {
+  /* $(window).on("load", function (e) {
     $("#global-loader").fadeOut("slow");
-  });
+  }); */
 
   // CARD
   const DIV_CARD = "div.card";
@@ -89,7 +89,7 @@
     autoplay: true,
     arrows: false,
     infinite: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     pauseOnHover: false,
     fade: true,
     cssEase: 'linear'
@@ -99,7 +99,7 @@
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     arrows: false,
     dots: false,
     pauseOnHover: false,
@@ -148,6 +148,40 @@
       },
     ],
   });
+
+  $(".office-slider").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    prevArrow: $('.slick-prev-custom'),
+    nextArrow: $('.slick-next-custom'),
+    dots: false,
+    pauseOnHover: false,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 520,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  });
+
   //CAROUSSEL END
 
   //TOGGLE NAVBAR
@@ -420,7 +454,7 @@ function resetData() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  if (window.location.pathname === '/office') {
+  /* if (window.location.pathname === '/office') {
     gsap.registerPlugin(ScrollTrigger);
 
     // Select the HTML elements needed for the animation
@@ -475,7 +509,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     initScroll(scrollSection, items, "vertical");
-  }
+  } */
 
   if (window.location.pathname === "/contacts") {
 
@@ -521,6 +555,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById('share').addEventListener('click', function () {
     document.querySelector('.social-links').classList.toggle('active');
+  });
+
+  document.querySelector('.become-partner-open').addEventListener('click', function () {
+    document.querySelector('.become-partner').classList.add('active');
+  });
+
+  document.querySelector('.become-partner-close').addEventListener('click', function () {
+    document.querySelector('.become-partner').classList.remove('active');
+  });
+
+  document.querySelector('.become-partner-overlay').addEventListener('click', function () {
+    document.querySelector('.become-partner').classList.remove('active');
   });
 
 });

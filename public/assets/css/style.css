@@ -13402,7 +13402,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 /*----- Global Loader -----*/
-#global-loader {
+/* #global-loader {
     position: fixed;
     z-index: 50000;
     background: white;
@@ -13414,7 +13414,7 @@ div.dataTables_wrapper div.dataTables_filter input {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-}
+} */
 
 ul {
     list-style-type: none;
